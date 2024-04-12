@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Request Buttons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+    }
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Control Panel</h1>
+
+<button onclick="sendRequest('http://192.168.4.1/sender=device/angle=1/'); location.reload();">Rotate right</button>
+<button onclick="sendRequest('http://192.168.4.1/sender=device/angle=-1/'); location.reload();">Rotate left</button>
+<button onclick="sendRequest('http://192.168.4.1/sender=device/angle=0/'); location.reload();">Stop rotation</button>
+
+
+<script>
+function sendRequest(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.onreadystatechange = function() { 
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      console.log("Request successful!");
+      // You can handle the response here if needed
+    } else {
+      console.log("Request failed!");
+      // Handle error or other status codes if needed
+    }
+  };
+  xhr.send();
+}
+</script>
+
+</body>
+</html>
