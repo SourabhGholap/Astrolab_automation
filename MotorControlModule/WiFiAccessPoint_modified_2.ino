@@ -149,7 +149,7 @@ void loop()
             }
         }
       }
-    if(millis()-prev_millis>1500)
+    if(millis()-prev_millis>200)
     {
       if (control == false)
       {  
